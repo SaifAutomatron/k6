@@ -21,8 +21,6 @@ export function setup() {
     return data;
 }
 
-
-
 export function teardown(data) {
     console.log('-- Teardown stage --');
 }

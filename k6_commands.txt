@@ -1,0 +1,95 @@
+
+==========================
+   k6 CLI Commands List
+==========================
+
+1. Run a test script:
+----------------------
+k6 run script.js
+
+2. Run a test with custom duration, virtual users, and iterations:
+-------------------------------------------------------------------
+k6 run --vus 10 --duration 30s script.js
+k6 run --iterations 100 script.js
+
+3. Set environment variables:
+------------------------------
+k6 run -e ENV_VAR_NAME=value script.js
+
+4. Specify output formats (influxdb, json, cloud, csv):
+------------------------------------------------------
+k6 run --out json=output.json script.js
+k6 run --out csv=output.csv script.js
+k6 run --out influxdb=http://localhost:8086/k6db script.js
+k6 run --out cloud script.js (for k6 cloud)
+
+5. View k6 version:
+--------------------
+k6 version
+
+6. Show k6 help:
+----------------
+k6 help
+k6 help run
+
+7. Show system information:
+----------------------------
+k6 stats
+
+8. Debug/test without execution:
+---------------------------------
+k6 inspect script.js
+
+9. Cloud execution (k6 Cloud account required):
+------------------------------------------------
+k6 cloud script.js
+
+10. Pause between iterations:
+------------------------------
+k6 run --rps 100 script.js (limit requests per second)
+
+11. Set thresholds via CLI (rare, usually in script):
+------------------------------------------------------
+k6 run --thresholds 'http_req_duration{p(95)<500}' script.js
+
+12. Enable HTTP debug logs:
+----------------------------
+k6 run --http-debug=full script.js
+k6 run --http-debug=body script.js
+k6 run --http-debug=header script.js
+
+13. Parameterize with external files:
+--------------------------------------
+k6 run --env DATA_FILE=users.csv script.js
+
+14. Set tags for the test run:
+------------------------------
+k6 run --tag test_id=1234 --tag project=load-testing script.js
+
+15. Handle batch requests efficiently:
+---------------------------------------
+k6 run --batch script.js
+
+16. Run with custom summary export:
+------------------------------------
+k6 run --summary-export=summary.json script.js
+
+17. Limit number of connections:
+---------------------------------
+k6 run --max-redirects 4 script.js
+k6 run --max-connection-reuses 10 script.js
+
+18. Use SSL options:
+---------------------
+k6 run --tls-version tls1.2 script.js
+k6 run --insecure-skip-tls-verify script.js
+
+19. Custom scenarios execution:
+--------------------------------
+k6 run --scenario name=custom_scenario script.js
+
+20. Abort test on first failure:
+--------------------------------
+k6 run --throw script.js
+
+==========================

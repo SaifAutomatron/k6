@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Smoke Test') {
+            steps {
+                echo 'Running Smoke Test...'
+                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./smoke-test.js'
+            }
+        }
+
+        stage('Load Test') {
+            steps {
+                echo 'Running Load Test...'
+                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./load-test.js'
+            }
+        }
+
+        stage('Soak Test') {
+            steps {
+                echo 'Running Soak Test...'
+                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./soak-test.js'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleaning up workspace or additional tasks...'
+        }
+        success {
+            echo 'All k6 performance tests completed successfully!'
+        }
+        failure {
+            echo 'Some k6 tests failed! Please check console output for details.'
+        }
+    }
+}

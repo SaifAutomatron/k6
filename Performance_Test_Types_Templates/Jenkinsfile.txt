@@ -5,21 +5,21 @@ pipeline {
         stage('Smoke Test') {
             steps {
                 echo 'Running Smoke Test...'
-                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./smoke-test.js'
+                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./Performance_Test_Types_Templates/smoke-test.js'
             }
         }
 
         stage('Load Test') {
             steps {
                 echo 'Running Load Test...'
-                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./load-test.js'
+                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./Performance_Test_Types_Templates/load-test.js'
             }
         }
 
         stage('Soak Test') {
             steps {
                 echo 'Running Soak Test...'
-                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./soak-test.js'
+                sh 'export PATH=$PATH:/opt/homebrew/bin && k6 run ./Performance_Test_Types_Templates/soak-test.js'
             }
         }
     }
